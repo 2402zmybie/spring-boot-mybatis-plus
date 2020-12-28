@@ -27,9 +27,9 @@ class SpringBootMybatisPlusApplicationTests {
     @Test
     void insert() {
         User user = new User();
-        user.setName("Lucy");
-        user.setAge(28);
-        user.setEmail("lucy@qq.com");
+        user.setName("东方不败");
+        user.setAge(1200);
+        user.setEmail("dongfang@qq.com");
         //使用mybatis-plus的自动填充功能
 //        user.setCreateTime(new Date());
 //        user.setUpdateTime(new Date());
@@ -45,6 +45,17 @@ class SpringBootMybatisPlusApplicationTests {
         user.setAge(120);
         int i = userMapper.updateById(user);
         System.out.println(i);
+    }
+
+    //测试乐观锁
+    @Test
+    void testOptimisticLocker() {
+        //根据id查询数据
+        User user = userMapper.selectById(1343458716774600705L);
+        user.setAge(100000);
+        int i = userMapper.updateById(user);
+        System.out.println(i);
+        //版本号加1 ,乐观锁生效
     }
 
 }
