@@ -1,5 +1,6 @@
 package com.hr.springbootmybatisplus;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hr.springbootmybatisplus.mapper.UserMapper;
@@ -95,6 +96,23 @@ class SpringBootMybatisPlusApplicationTests {
         //执行的操作: UPDATE user SET deleted=1 WHERE id=? AND deleted=0
         int i = userMapper.deleteById(1343466794999898114L);
         System.out.println(i);
+    }
+
+
+    //----------------------mybatis-plus实现复杂查询
+    @Test
+    void testSelectQuery() {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        //设置条件
+        //ge大于等于  gt大于 le小于等于 lt小于
+        //查询age>=30
+//        queryWrapper.ge("age", 30);
+//        List<User> users = userMapper.selectList(queryWrapper);
+//        System.out.println(users);
+
+        queryWrapper.eq("name","东方不败");
+        List<User> users = userMapper.selectList(queryWrapper);
+        System.out.println(users);
     }
 
 }
