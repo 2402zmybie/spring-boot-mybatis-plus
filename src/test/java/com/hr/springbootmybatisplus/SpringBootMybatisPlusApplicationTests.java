@@ -30,7 +30,7 @@ class SpringBootMybatisPlusApplicationTests {
     @Test
     void insert() {
         User user = new User();
-        user.setName("东方不败");
+        user.setName("岳不群");
         user.setAge(1200);
         user.setEmail("dongfang@qq.com");
         //使用mybatis-plus的自动填充功能
@@ -75,6 +75,26 @@ class SpringBootMybatisPlusApplicationTests {
         //把分页的所有数据封装到page对象里面
         userMapper.selectPage(page, null);
         System.out.println(page.getRecords());
+    }
+
+    //删除  物理删除
+    @Test
+    void delete() {
+        //删除单个
+        int i = userMapper.deleteById(1343466794999898114L);
+        System.out.println(i);
+        //批量删除
+//        int i1 = userMapper.deleteBatchIds(Arrays.asList(2L, 3L));
+//        System.out.println(i1);
+    }
+
+
+    //删除  逻辑删除
+    @Test
+    void logicDelete() {
+        //执行的操作: UPDATE user SET deleted=1 WHERE id=? AND deleted=0
+        int i = userMapper.deleteById(1343466794999898114L);
+        System.out.println(i);
     }
 
 }

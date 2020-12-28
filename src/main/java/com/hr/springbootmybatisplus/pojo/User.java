@@ -22,7 +22,11 @@ public class User {
     private Date createTime;
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
+    //乐观锁
     @Version
     @TableField(fill = FieldFill.INSERT)
     private Integer version;
+    //逻辑删除标志
+    @TableLogic
+    private Integer deleted;
 }
