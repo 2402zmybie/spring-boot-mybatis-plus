@@ -1,5 +1,7 @@
 package com.hr.springbootmybatisplus;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hr.springbootmybatisplus.mapper.UserMapper;
 import com.hr.springbootmybatisplus.pojo.User;
 import lombok.extern.slf4j.Slf4j;
@@ -7,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -56,6 +59,22 @@ class SpringBootMybatisPlusApplicationTests {
         int i = userMapper.updateById(user);
         System.out.println(i);
         //版本号加1 ,乐观锁生效
+    }
+
+    //多个id批量查询
+    @Test
+    void selectBatchsIds() {
+        List<User> users = userMapper.selectBatchIds(Arrays.asList(1, 2, 3));
+        System.out.println(users);
+    }
+
+    @Test
+    void testPage() {
+        //创建page对象, 传入两个参数,当前页和每页显示记录数
+        Page<User> page = new Page<>(1,3);
+        //把分页的所有数据封装到page对象里面
+        userMapper.selectPage(page, null);
+        System.out.println(page.getRecords());
     }
 
 }
