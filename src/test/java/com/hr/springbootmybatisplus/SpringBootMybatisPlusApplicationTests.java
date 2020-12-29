@@ -109,10 +109,40 @@ class SpringBootMybatisPlusApplicationTests {
 //        queryWrapper.ge("age", 30);
 //        List<User> users = userMapper.selectList(queryWrapper);
 //        System.out.println(users);
+        //eq等于   ne不等于 <>
+//        queryWrapper.eq("name","东方不败");
+//        List<User> users = userMapper.selectList(queryWrapper);
+//        System.out.println(users);
+//        queryWrapper.ne("name","东方不败");
+//        List<User> users = userMapper.selectList(queryWrapper);
+//        System.out.println(users);
 
-        queryWrapper.eq("name","东方不败");
+//        LIKE 模糊查询'%值%'
+//        queryWrapper.like("name","东方");
+//        List<User> users = userMapper.selectList(queryWrapper);
+//        System.out.println(users);
+
+//        BETWEEN 值1 AND 值2
+//        queryWrapper.between("age", 20,30);
+//        List<User> users = userMapper.selectList(queryWrapper);
+//        System.out.println(users);
+
+//        orderByDesc降序排列
+//        queryWrapper.orderByDesc("id");
+//        List<User> users = userMapper.selectList(queryWrapper);
+//        System.out.println(users);
+
+        //last: 无视优化规则直接拼接到 sql 的最后
+//        queryWrapper.last("limit 1");
+//        List<User> users = userMapper.selectList(queryWrapper);
+//        System.out.println(users);
+
+        //select : 指定要查询的列
+        queryWrapper.select("id","name");
         List<User> users = userMapper.selectList(queryWrapper);
         System.out.println(users);
+
+
     }
 
 }
